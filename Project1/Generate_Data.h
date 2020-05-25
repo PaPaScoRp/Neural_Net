@@ -27,7 +27,7 @@ Spiral_Data::Spiral_Data(int points, int classes) {
 	X = Eigen::ArrayXd::Zero((points * classes), 2);
 	y = Eigen::ArrayXd::Zero(points * classes);
 	for (int pashm = 0; pashm <= classes; pashm++) {
-		ix
+		ixsdsdsdsdsdsd
 	}
 }
 
