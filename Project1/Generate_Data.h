@@ -10,6 +10,7 @@ struct Spiral_Data {
 /*
 def spiral_data(points, classes):
 	X = np.zeros((points*classes, 2))
+
 	y = np.zeros(points*classes, dtype='uint8')
 	for class_number in range(classes):
 		ix = range(points*class_number, points*(class_number+1))
@@ -22,12 +23,43 @@ def spiral_data(points, classes):
 
 print(spiral_data(3, 100))
 */
+/*
 
-Spiral_Data::Spiral_Data(int points, int classes) {
+points = 3
+classes = 10
+--
+x = 30 row. 2 col
+y = 30col
+ix =range ( 0,3)
+
+---------------------------------
+	ix [point] = {
+	for(int i = points*class_number; i < points*(class_number+1) < i++) {
+	   ix[i] = i
+	}
+
+	for(auto const &i : ix){
+	
+	}
+	*/
+
+
+Spiral_Data::Spiral_Data(int points = 0, int const classes) {
 	X = Eigen::ArrayXd::Zero((points * classes), 2);
 	y = Eigen::ArrayXd::Zero(points * classes);
-	for (int pashm = 0; pashm <= classes; pashm++) {
-		ixsdsdsdsdsdsd
+	vector<int> ix;
+	for(int class_number = 0; class_number < classes; class_number++) {
+
+		for(int i = points * class_number; i < points * (class_number + 1); i++) {
+
+			ix.push_back(i);
+
+
+
+
+
+		}
 	}
 }
+
 

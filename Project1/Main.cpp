@@ -31,7 +31,6 @@ int main() {
 		Activation_ReLu activation;
 
 		cout << layer2.forward(activation.forward(layer1.forward(inputs))) << "\n\n\n";
-		cout << layer2.forward(activation.forward(layer1.forward(inputs))) << "\n\n\n";
 
 
 	}
