@@ -1,12 +1,12 @@
 #pragma once
-#include <numeric>
+using namespace std;
 struct Spiral_Data {
 	//X = inputs. A 2D array
 	//Y = ? 1D array
 	Eigen::MatrixXd X;
-	Eigen::VectorXd y;
-	Spiral_Data(int, int);
+	Eigen::ArrayXd y;
 };
+
 
 /*
 
@@ -43,24 +43,36 @@ ix =range ( 0,3)
 
 	print(spiral_data(3, 100))
 	*/
+Spiral_Data Data_Generator(int points, int const classes) {
 
-Spiral_Data::Spiral_Data(int points = 0, int const classes) {
-	X = Eigen::ArrayXXd::Zero((points * classes), 2);
-	y = Eigen::ArrayXd::Zero(points * classes);
-	vector<int> ix;
-	for(int class_number = 0; class_number < classes; class_number++) {
+	Eigen::MatrixXd X = Eigen::ArrayXXd::Zero((points * classes), 2);
+	Eigen::ArrayXd y = Eigen::ArrayXd::Zero(points * classes);
 
-		for(int i = points * class_number; i < points * (class_number + 1); i++) {
+	int f = 0;
+	int k = 0;
+	for (int class_number = 0; class_number < classes; class_number++) {
 
-			ix.push_back(i);
-			Eigen::VectorXd r = Eigen::VectorXd::LinSpaced(points, 0.0, 1).transpose(); //radius
-			Eigen::VectorXd t = Eigen::VectorXd::LinSpaced(points, class_number * 4, (class_number + 1) * 4).transpose() + Eigen::VectorXd::Random(points).transpose()*0.2;
-			for (int j = 0; j < ix.size(); j++)
+		Eigen::VectorXd r = Eigen::VectorXd::LinSpaced(points, 0.0, 1).transpose(); //radius
+		Eigen::VectorXd t = Eigen::VectorXd::LinSpaced(points, class_number * 4, (class_number + 1) * 4).transpose() + Eigen::VectorXd::Random(points).transpose()*0.2;
+		
+		//for (int k = ix[0]; k < ix[points] ; k++)
+		
+		//X[ix] = np.c_[r * np.sin(t * 2.5), r * np.cos(t * 2.5)] python
+		X.row(k) << r.array() * ((t * 2.5).array()).sin(), r.array()* ((t * 2.5).array()).cos(); // cpp
+			
 
-				X << r * (t * 2.5).sin(), r* (t * 2.5).cos();
+			for (int f2 = k; f2 < k + points; f2++) {
+				y[f2] = class_number;		
+					}
+				
+			
 
-		}
+		k = k + points;
 	}
-}
 
+	return { X, y };
+//for(int i = points * class_number; i < points * (class_number + 1); i++) {
+				
+}				
+				
 
